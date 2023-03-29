@@ -1,0 +1,251 @@
+import { Grid, Flex, Box, Image, Text, Link as A } from "theme-ui"
+import Vertical from '../components/vertical'
+import Editor from "../components/editor"
+
+<Vertical>
+
+# money bot 💸
+
+BANDS BANDS BANDS
+\- terry n ousman 
+
+![screenshot of an example bot from this workshop](https://cloud-bgev4sh71-hack-club-bot.vercel.app/0discord_xwj7yznho6.webp)
+
+</Vertical>
+
+---
+
+# ok so real quick
+
+making a bot is just writing text! You can do it in your browser for free.
+
+our bot is going to be written in python, a language known for being easy (but maddeningly slow)
+
+---
+
+<Vertical>
+
+# so basically
+
+  python is used just about everywhere, from ~~facebook~~ **meta** to google to the us government. it's super easy to write, and it often used to make scripts that you can run easily.
+
+
+  <Flex sx={{
+    img: {
+      flex: '1 1 auto',
+      maxWidth: '45vw'
+    } }}>
+
+
+  ![python hello world](https://cloud-a5vquodnp-hack-club-bot.vercel.app/0pyhelloworld.png)
+
+
+  ![presto, a database made in python and used at meta and uber](https://cloud-7mwrhug5y-hack-club-bot.vercel.app/0sidekick_e8nng1noyt.png)
+
+
+  </Flex>
+
+</Vertical>
+
+---
+
+# how do you write it?
+
+<Notes>
+
+IDK, you tell me
+
+</Notes>
+
+---
+
+# python is made up of objects
+
+everything in python is some type of *thing*, like a vase or a ball
+
+---
+
+# each object has its own properties
+
+just like how a vase is blue, a python object has attributes.
+
+```python
+object.color
+>>> "blue"
+```
+
+---
+
+<Vertical>
+
+
+![repl.it page](https://cdn.thrzl.xyz/r/sidekick_plaOXLKSFl.png)
+
+<https://repl.it/languages/python>
+
+</Vertical>
+
+---
+
+<Invert>
+
+# hello world!
+
+```python
+print("hello world")
+```
+<sub><em>see how easy that was?</em></sub>
+
+</Invert>
+
+---
+
+# you did it 🥳
+
+you just wrote your first line of python! your bot will just be a collection of objects-- ready to start building it?
+
+---
+<Vertical>
+
+
+pull up your code from last time:
+
+![repl.it python starter](https://cloud-7193wyias-hack-club-bot.vercel.app/0167543097081194382.png)
+
+</Vertical>
+
+
+---
+
+<Vertical>
+
+
+to store the information, we're going to use repl.it's built-in database. we need to import `AsyncDatabase` from `replit`. we'll also be using the `randint` function to decide how much money to give people after they work.
+
+![repl.it empty](https://cloud-dct5czbhz-hack-club-bot.vercel.app/0image.png)
+
+</Vertical>
+
+---
+
+<Vertical>
+
+**context managers** are pieces of code that automatically close things when you're done with them.
+
+```python
+with file_i_need() as f:
+  f.write("tjelkfdjkas")
+  # other stuff
+
+# the file is now closed since i'm done with it
+```
+
+</Vertical>
+
+---
+
+<Vertical>
+
+
+we're going to use an **async** context manager to automatically close the database when we're done with it. it'll look just like the aiohttp sessions!
+
+</Vertical>
+
+---
+
+<Vertical>
+
+to start, let's make a new command called work:
+
+![work command beginning](https://cloud-jj2ceftb2-hack-club-bot.vercel.app/0image.png)
+<sub><em>fun fact: `...` is actually valid python (it does nothing)</em></sub>
+
+</Vertical>
+
+---
+
+<Grid columns={[null,null,2]} sx={{ px: [3, 4, 5], minHeight:'100vh', alignItems: 'center' }}>
+
+<Vertical>
+  
+
+  
+  <h2>bot commands typically end in <code>await ctx.send(...)</code></h2>
+  
+  <br/>
+  
+  <code>await ctx.send(...)</code> actually sends the message back to the bot channel.
+
+
+
+</Vertical>
+
+
+```python
+@bot.command("hello")
+async def hello(ctx):
+    # do stuff here...
+    ...
+    await ctx.send("hi")
+```
+
+</Grid>
+
+---
+
+what we need to use now is to actually use our database and get the information.
+
+```python
+@bot.command("work")
+async def work(ctx):
+    async with AsyncDatabase(os.environ["DB_URL"]) as db:
+      ...
+```
+
+---
+
+<Vertical>
+
+let's pick a random number between 0 and 2000...
+
+![](https://cloud-laeok7doi-hack-club-bot.vercel.app/0image.png)
+
+</Vertical>
+
+---
+
+<Vertical>
+
+then let's see how much money the user already has (if they have none, just say 0)...
+
+![](https://cloud-jqg4z92i3-hack-club-bot.vercel.app/0image.png)
+
+</Vertical>
+
+---
+
+now we can update it (and send a lil message):
+![](https://cloud-mveoead2a-hack-club-bot.vercel.app/0image.png)
+
+---
+
+
+<Invert>
+
+
+# you did it 🥳
+
+### try adding your own commands now, like a `beg` command where a random person gives you money!
+
+
+</Invert>
+
+---
+
+<Invert>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vczXuoTPliA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</Invert>
+
+---

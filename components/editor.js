@@ -6,6 +6,7 @@ import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
 import 'prismjs/components/prism-markup'
+import 'prismjs/components/prism-python'
 
 const Editor = ({ defaultValue = '', checks = [], children, sx, ...props }) => {
   const [content, setContent] = useState(defaultValue)
